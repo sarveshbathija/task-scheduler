@@ -1,0 +1,10 @@
+[
+    {
+        "name": "clear_red_watchlist",
+        "hour": 1,
+        "minute": 0,
+        "days": "daily",
+        "command": ["python3", "/app/scripts/clear_tv_watchlist.py", "--clear-tracker"],
+        "timeout": 60
+    }
+]
