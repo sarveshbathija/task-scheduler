@@ -1,6 +1,7 @@
 [
     {
         "name": "clear_red_watchlist",
+        "description": "Clears the TradingView red watchlist tracker file so tickers from the previous day don't carry over",
         "schedule": "0 1 * * *",
         "type": "command",
         "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--clear-tracker"],
@@ -8,6 +9,7 @@
     },
     {
         "name": "extract_levels_market_hours",
+        "description": "Extracts key price levels from today's InvestorsLive chat messages and generates TOS study. Runs every 10 min during market hours to keep levels up to date.",
         "schedule": "*/10 6-13 * * 1-5",
         "type": "http",
         "http": {
@@ -21,6 +23,7 @@
     },
     {
         "name": "extract_levels_eod_recap",
+        "description": "End-of-day regeneration of key levels using 5 days of chat data for a broader view. Runs after market close.",
         "schedule": "0 14 * * 1-5",
         "type": "http",
         "http": {
@@ -34,6 +37,7 @@
     },
     {
         "name": "generate_tos_alerts",
+        "description": "Fetches active price alerts from InvestorsLive API and generates a TOS study with alert-based price levels",
         "schedule": "0 5 * * 1-5",
         "type": "http",
         "http": {

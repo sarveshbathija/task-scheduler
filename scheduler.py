@@ -374,7 +374,8 @@ def main():
     logger.info(f"Loaded {len(tasks)} task(s):")
     for task in tasks:
         task_type = task.get("type", "command")
-        logger.info(f"  - {task['name']}: {_format_schedule(task)} [{task_type}]")
+        desc = f" — {task['description']}" if task.get("description") else ""
+        logger.info(f"  - {task['name']}: {_format_schedule(task)} [{task_type}]{desc}")
 
     last_runs = {}
 
