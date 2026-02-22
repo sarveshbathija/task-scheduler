@@ -18,7 +18,7 @@
     {
         "name": "backup_stocks",
         "description": "Dumps stocks MySQL database (iu) and uploads to Google Drive",
-        "schedule": "0 2 * * *",
+        "schedule": "59 23 * * *",
         "type": "command",
         "command": ["python3", "/app/backup.py", "--job", "stocks"],
         "timeout": 7200
