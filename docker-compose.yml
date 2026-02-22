@@ -3,11 +3,17 @@ services:
     restart: always
     build: .
     container_name: task-scheduler
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./tasks.json:/app/tasks.json:ro
       - /home/sarvesh/stocks/mcp-chat-server:/app/scripts:rw
       - ./logs:/var/log:rw
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/sarvesh/teslamate/backup/credentials.json:/app/credentials/credentials.json:ro
+      - /home/sarvesh/teslamate/backup/token.json:/app/credentials/teslamate_token.json
+      - /home/sarvesh/stocks/scripts/token.json:/app/credentials/stocks_token.json
+    env_file:
+      - /home/sarvesh/backups/.env
     environment:
       - TZ=America/Los_Angeles
       - PYTHONUNBUFFERED=1
