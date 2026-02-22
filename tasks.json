@@ -8,45 +8,19 @@
         "timeout": 120
     },
     {
-        "name": "extract_levels_market_hours",
-        "description": "Extracts key price levels from today's InvestorsLive chat messages and generates TOS study. Runs every 10 min during market hours to keep levels up to date.",
-        "schedule": "*/10 6-13 * * 1-5",
-        "type": "http",
-        "http": {
-            "method": "POST",
-            "url": "http://backendv2:8500/tos-generate",
-            "body": {"days": 1},
-            "headers": {"Content-Type": "application/json"},
-            "expected_status": [200]
-        },
-        "timeout": 120
+        "name": "backup_teslamate",
+        "description": "Dumps TeslaMate PostgreSQL database and uploads to Google Drive",
+        "schedule": "0 2 * * *",
+        "type": "command",
+        "command": ["python3", "/app/backup.py", "--job", "teslamate"],
+        "timeout": 7200
     },
     {
-        "name": "extract_levels_eod_recap",
-        "description": "End-of-day regeneration of key levels using 5 days of chat data for a broader view. Runs after market close.",
-        "schedule": "0 14 * * 1-5",
-        "type": "http",
-        "http": {
-            "method": "POST",
-            "url": "http://backendv2:8500/tos-generate",
-            "body": {"days": 5},
-            "headers": {"Content-Type": "application/json"},
-            "expected_status": [200]
-        },
-        "timeout": 300
-    },
-    {
-        "name": "generate_tos_alerts",
-        "description": "Fetches active price alerts from InvestorsLive API and generates a TOS study with alert-based price levels",
-        "schedule": "0 5 * * 1-5",
-        "type": "http",
-        "http": {
-            "method": "POST",
-            "url": "http://backendv2:8500/tos-generate-alerts",
-            "body": {},
-            "headers": {"Content-Type": "application/json"},
-            "expected_status": [200]
-        },
-        "timeout": 180
+        "name": "backup_stocks",
+        "description": "Dumps stocks MySQL database (iu) and uploads to Google Drive",
+        "schedule": "0 2 * * *",
+        "type": "command",
+        "command": ["python3", "/app/backup.py", "--job", "stocks"],
+        "timeout": 7200
     }
 ]
