@@ -8,7 +8,7 @@ A standalone, config-driven task scheduler that runs scheduled jobs using cron e
 |------|----------|-------------|
 | `clear_red_watchlist` | `0 1 * * *` (1am daily) | Clears TradingView red watchlist tracker |
 | `backup_teslamate` | `0 2 * * *` (2am daily) | pg_dump TeslaMate PostgreSQL → Google Drive |
-| `backup_stocks` | `0 2 * * *` (2am daily) | mysqldump stocks MySQL → Google Drive |
+| `backup_stocks` | `59 23 * * *` (11:59pm daily) | mysqldump stocks MySQL → Google Drive |
 
 ## Quick Start
 
