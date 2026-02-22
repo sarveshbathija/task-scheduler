@@ -12,7 +12,7 @@
         "description": "Dumps TeslaMate PostgreSQL database and uploads to Google Drive",
         "schedule": "0 2 * * *",
         "type": "command",
-        "command": ["python3", "/app/backup.py", "--job", "teslamate"],
+        "command": ["docker", "exec", "backups", "python3", "/app/backup.py", "--job", "teslamate"],
         "timeout": 7200
     },
     {
@@ -20,7 +20,7 @@
         "description": "Dumps stocks MySQL database (iu) and uploads to Google Drive",
         "schedule": "0 2 * * *",
         "type": "command",
-        "command": ["python3", "/app/backup.py", "--job", "stocks"],
+        "command": ["docker", "exec", "backups", "python3", "/app/backup.py", "--job", "stocks"],
         "timeout": 7200
     }
 ]
