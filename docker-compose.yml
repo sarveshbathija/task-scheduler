@@ -1,0 +1,13 @@
+services:
+  task-scheduler:
+    restart: always
+    build: .
+    container_name: task-scheduler
+    volumes:
+      - ./tasks.json:/app/tasks.json:ro
+      - /home/sarvesh/stocks/mcp-chat-server:/app/scripts:rw
+      - ./logs:/var/log:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=America/Los_Angeles
+      - PYTHONUNBUFFERED=1
