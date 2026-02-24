@@ -8,6 +8,14 @@
         "timeout": 120
     },
     {
+        "name": "clear_ah_watchlist",
+        "description": "Clears the TradingView orange (after hours) watchlist and tracker at 12:55pm PST daily on weekdays",
+        "schedule": "55 12 * * 1-5",
+        "type": "command",
+        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "orange", "--clear-tracker", "--tracker-file", "/app/scripts/trackers/tradingview_ah_watchlist_tracker.json"],
+        "timeout": 120
+    },
+    {
         "name": "backup_teslamate",
         "description": "Dumps TeslaMate PostgreSQL database and uploads to Google Drive",
         "schedule": "0 2 * * *",
