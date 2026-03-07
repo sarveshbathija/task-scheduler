@@ -1,10 +1,10 @@
 [
     {
         "name": "clear_red_watchlist",
-        "description": "Clears the TradingView red watchlist tracker file so tickers from the previous day don't carry over",
+        "description": "Clears the TradingView red watchlist and tracker file so tickers from the previous day don't carry over",
         "schedule": "0 1 * * *",
         "type": "command",
-        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--clear-tracker"],
+        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "red", "--clear-tracker", "--tracker-file", "/app/scripts/tradingview_watchlist_tracker.json"],
         "timeout": 120
     },
     {
@@ -13,6 +13,22 @@
         "schedule": "55 12 * * 1-5",
         "type": "command",
         "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "orange", "--clear-tracker", "--tracker-file", "/app/scripts/trackers/tradingview_ah_watchlist_tracker.json"],
+        "timeout": 120
+    },
+    {
+        "name": "clear_pm_watchlist",
+        "description": "Clears the TradingView green (pre-market) watchlist and tracker at 11pm PST daily",
+        "schedule": "0 23 * * *",
+        "type": "command",
+        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "green", "--clear-tracker", "--tracker-file", "/app/scripts/trackers/tradingview_pm_watchlist_tracker.json"],
+        "timeout": 120
+    },
+    {
+        "name": "rotate_today_watchlist",
+        "description": "Moves Today's top 15 tickers to the day-of-week watchlist and clears Today at 11:59pm PST weekdays",
+        "schedule": "59 23 * * 1-5",
+        "type": "command",
+        "command": ["python3", "/app/scripts/scripts/rotate_today_watchlist.py"],
         "timeout": 120
     },
     {
