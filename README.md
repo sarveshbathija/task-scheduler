@@ -4,11 +4,16 @@ A standalone, config-driven task scheduler that runs scheduled jobs using cron e
 
 ## Tasks
 
-| Task | Schedule | What it does |
-|------|----------|-------------|
-| `clear_red_watchlist` | `0 1 * * *` (1am daily) | Clears TradingView red watchlist tracker |
-| `backup_teslamate` | `0 2 * * *` (2am daily) | pg_dump TeslaMate PostgreSQL → Google Drive |
-| `backup_stocks` | `59 23 * * *` (11:59pm daily) | mysqldump stocks MySQL → Google Drive |
+| Task | Schedule | Days | What it does |
+|------|----------|------|-------------|
+| `clear_blue_watchlist` | 1:00 AM | Sun–Thu | Clears TradingView blue (InvestorsLive) watchlist and tracker |
+| `clear_ah_watchlist` | 12:55 PM | Mon–Fri | Clears TradingView orange (after hours) watchlist and tracker |
+| `clear_pm_watchlist` | 11:00 PM | Sun–Thu | Clears TradingView green (pre-market) watchlist and tracker |
+| `rotate_today_watchlist` | 11:59 PM | Mon–Fri | Rotates Today's top 15 tickers to day-of-week watchlist |
+| `backup_teslamate` | 2:00 AM | Daily | pg_dump TeslaMate PostgreSQL → Google Drive |
+| `backup_stocks` | 11:59 PM | Daily | mysqldump stocks MySQL → Google Drive |
+
+All times are Pacific (America/Los_Angeles).
 
 ## Quick Start
 

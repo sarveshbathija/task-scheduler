@@ -1,15 +1,15 @@
 [
     {
-        "name": "clear_red_watchlist",
-        "description": "Clears the TradingView red watchlist and tracker file so tickers from the previous day don't carry over",
-        "schedule": "0 1 * * *",
+        "name": "clear_blue_watchlist",
+        "description": "Clears the TradingView blue (InvestorsLive) watchlist and tracker file Sun-Thu so tickers don't carry over",
+        "schedule": "0 1 * * 0-4",
         "type": "command",
-        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "red", "--clear-tracker", "--tracker-file", "/app/scripts/tradingview_watchlist_tracker.json"],
+        "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "blue", "--clear-tracker", "--tracker-file", "/app/scripts/tradingview_watchlist_tracker.json"],
         "timeout": 120
     },
     {
         "name": "clear_ah_watchlist",
-        "description": "Clears the TradingView orange (after hours) watchlist and tracker at 12:55pm PST daily on weekdays",
+        "description": "Clears the TradingView orange (after hours) watchlist and tracker at 12:55pm PST Mon-Fri",
         "schedule": "55 12 * * 1-5",
         "type": "command",
         "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "orange", "--clear-tracker", "--tracker-file", "/app/scripts/trackers/tradingview_ah_watchlist_tracker.json"],
@@ -18,7 +18,7 @@
     {
         "name": "clear_pm_watchlist",
         "description": "Clears the TradingView green (pre-market) watchlist and tracker at 11pm PST daily",
-        "schedule": "0 23 * * *",
+        "schedule": "0 23 * * 0-4",
         "type": "command",
         "command": ["python3", "/app/scripts/scripts/clear_tv_watchlist.py", "--color", "green", "--clear-tracker", "--tracker-file", "/app/scripts/trackers/tradingview_pm_watchlist_tracker.json"],
         "timeout": 120
